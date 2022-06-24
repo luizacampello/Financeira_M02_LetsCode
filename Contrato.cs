@@ -8,12 +8,12 @@ namespace LMCFinanceira
 {
     public abstract class Contrato
     {
-        public Guid idContrato { get; set; }
-        public string contratante { get; set; }
-        public decimal valor { get; set; }
-        public int prazo { get; set; }
+        protected Guid idContrato { get; set; }
+        public string contratante { get; protected set; }
+        protected decimal valor { get; set; }
+        protected int prazo { get; set; }
 
-        public virtual decimal CalcularPrestacao()
+        protected virtual decimal CalcularPrestacao()
         {
             return valor / prazo;
         }

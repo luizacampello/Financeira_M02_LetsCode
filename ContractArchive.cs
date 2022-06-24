@@ -8,7 +8,7 @@ namespace LMCFinanceira
 {
     public class ContractArchive
     {
-        public List<ContratoPF> PFcontracts { get;  private set; } = new List<ContratoPF>();
+        public List<ContratoPF> PFcontracts { get; private set; } = new List<ContratoPF>();
         public List<ContratoPJ> PJcontracts { get; private set; } = new List<ContratoPJ>();
 
         public void DisplayPFContractsList()

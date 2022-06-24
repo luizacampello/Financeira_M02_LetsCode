@@ -8,9 +8,9 @@ namespace LMCFinanceira
 {
     public class ContratoPF : Contrato
     {
-        public string CPF { get; set; }
-        DateTime DataNascimento;
-        int idade;
+        public string CPF { get; private set; }
+        private DateTime DataNascimento { get; set; }
+        private int idade { get; set; }
 
         public ContratoPF(string contratante, decimal valor, int prazo, string CPF, DateTime DataNascimento, int idade)
         {
@@ -44,11 +44,10 @@ namespace LMCFinanceira
 
         }
 
-        public override decimal CalcularPrestacao()
+        protected override decimal CalcularPrestacao()
         {
             int adicionalIdade = CalcularAdicional();
-            decimal prestacao = base.CalcularPrestacao();
-            prestacao += adicionalIdade;
+            decimal prestacao = base.CalcularPrestacao() + adicionalIdade;
             return decimal.Round(prestacao, 2);
         }
 
@@ -57,7 +56,7 @@ namespace LMCFinanceira
             Console.WriteLine($"ID do Contrato: {idContrato}");
             Console.WriteLine($"Contratante: {contratante}");
             Console.WriteLine($"CPF: {CPF}");
-            Console.WriteLine($"Data de Nascimento: {DataNascimento} ({idade} anos)");
+            Console.WriteLine($"Data de Nascimento: {DataNascimento.ToString("dd/MM/yyyy")} ({idade} anos)");
             base.ExibirInfo();
             
         }

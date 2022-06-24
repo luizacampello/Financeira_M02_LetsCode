@@ -38,6 +38,7 @@ namespace LMCFinanceira
                     SelectContractTypeToSearch(contractsArchive);
                     return;
                 case "4":
+                    Console.Clear();
                     EndProgram();                  
                     return;
                 default:
@@ -46,17 +47,6 @@ namespace LMCFinanceira
                     MenuSelection(contractsArchive);
                     return;
             }
-        }
-
-        static string UserInput()
-        {
-            string userInput = Console.ReadLine();
-            if (!String.IsNullOrWhiteSpace(userInput))
-            {
-                return userInput.Trim();
-            }
-            Console.WriteLine(Messages.invalidNullInput);
-            return UserInput();
         }
 
         static void SelectContractTypeToSearch(ContractArchive contractsArchive)
@@ -175,20 +165,15 @@ namespace LMCFinanceira
             string UserSelection = UserInput();
             switch (UserSelection)
             {
-                case "1":
-                    Console.Clear();
-                    Console.WriteLine(Messages.NewPFContractHeaderMenu);
+                case "1":                 
                     NewPFContract(contractsArchive);
                     ReturnProgram(contractsArchive);
                     return;
-                case "2":
-                    Console.Clear();
-                    Console.WriteLine(Messages.NewPJContractHeaderMenu);
+                case "2":                    
                     NewPJContract(contractsArchive);
                     ReturnProgram(contractsArchive);
                     return;
                 case "3":
-                    Console.Clear();
                     MenuSelection(contractsArchive);
                     return;
                 default:
@@ -202,6 +187,8 @@ namespace LMCFinanceira
 
         static void NewPFContract(ContractArchive contractsArchive)
         {
+            Console.Clear();
+            Console.WriteLine(Messages.NewPFContractHeaderMenu);
             string contratante = "";
             DateTime birthDate = new ();
             int age = 0;
@@ -217,27 +204,21 @@ namespace LMCFinanceira
                     Console.WriteLine(Messages.invalidAge);
                 }
             }
+
             string CPF = NewCPF();
             decimal valor = NewValor();
             int prazo = NewPrazo();
             
             ContratoPF novoContratoPF = new ContratoPF(contratante, valor, prazo, CPF, birthDate, age);
             contractsArchive.AddToContractList(novoContratoPF);
-            Console.WriteLine();
             Console.WriteLine(Messages.sucessfullContract);
             novoContratoPF.ExibirInfo();
         }
 
-        static string NewContratante()
-        {
-            Console.Write(Messages.newEntryContratante);
-            string userInput = UserInput();
-
-            return userInput;
-        }
-
         static void NewPJContract(ContractArchive contractsArchive)
         {
+            Console.Clear();
+            Console.WriteLine(Messages.NewPJContractHeaderMenu);
             string contratante = NewContratante();
             string CNPJ = NewCNPJ();
             string inscricaoEstadual = NewInscricaoEstadual();
@@ -246,10 +227,17 @@ namespace LMCFinanceira
 
             ContratoPJ novoContratoPJ = new ContratoPJ(contratante, valor, prazo, CNPJ, inscricaoEstadual);
             contractsArchive.AddToContractList(novoContratoPJ);
-            Console.WriteLine();
             Console.WriteLine(Messages.sucessfullContract);
             novoContratoPJ.ExibirInfo();
         }
+
+        static string NewContratante()
+        {
+            Console.Write(Messages.newEntryContratante);
+            string userInput = UserInput();
+
+            return userInput;
+        }        
 
         static public decimal NewValor()
         {
@@ -284,7 +272,6 @@ namespace LMCFinanceira
             }
             Console.WriteLine(Messages.invalidInput);
             return NewPrazo();
-
         }
 
         static public string NewCPF()
@@ -353,9 +340,19 @@ namespace LMCFinanceira
             return age;
         }
 
+        static string UserInput()
+        {
+            string userInput = Console.ReadLine();
+            if (!String.IsNullOrWhiteSpace(userInput))
+            {
+                return userInput.Trim();
+            }
+            Console.WriteLine(Messages.invalidNullInput);
+            return UserInput();
+        }
+
         private static void EndProgram()
         {
-            Console.Clear();
             Console.WriteLine(Messages.endThanks);
             Console.WriteLine();
             Console.WriteLine(Messages.endEntryKey);

@@ -8,8 +8,8 @@ namespace LMCFinanceira
 {
     public class ContratoPJ : Contrato
     {
-        public string CNPJ;
-        string inscricaoEstadual;
+        public string CNPJ { get; private set; }
+        private string inscricaoEstadual { get; set; }
 
         public ContratoPJ(string contratante, decimal valor, int prazo, string CNPJ, string inscricaoEstadual)
         {
@@ -21,7 +21,7 @@ namespace LMCFinanceira
             this.inscricaoEstadual = inscricaoEstadual;
         }
 
-        public override decimal CalcularPrestacao()
+        protected override decimal CalcularPrestacao()
         {
             decimal prestacao = base.CalcularPrestacao() + 3;
             return decimal.Round(prestacao, 2);

@@ -9,11 +9,10 @@ namespace LMCFinanceira
     public static class FormatValidation
     {
         public static string DocumentPontuationCleaner(string document)
-        {
-            document = document.Trim();
-            document = document.Replace(".", "").Replace("-", "").Replace("/", ""); ;
-            return document;
+        { 
+            return document.Replace(".", "").Replace("-", "").Replace("/", "");            
         }
+
         public static bool IsCPF(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -23,7 +22,7 @@ namespace LMCFinanceira
             int soma;
             int resto;
 
-            if (cpf.Length != 11)
+            if (cpf.Length != 11 || cpf == "00000000000")
             {
                 return false;
             }
@@ -78,7 +77,7 @@ namespace LMCFinanceira
             string digito;
             string tempCnpj;
 
-            if (cnpj.Length != 14)
+            if (cnpj.Length != 14 || cnpj == "00000000000000")
             {
                 return false;
             }
@@ -103,7 +102,7 @@ namespace LMCFinanceira
             }
 
             digito = resto.ToString();
-            tempCnpj = tempCnpj + digito;
+            tempCnpj += digito;
             soma = 0;
 
             for (int i = 0; i < 13; i++)
@@ -121,7 +120,7 @@ namespace LMCFinanceira
             {
                 resto = 11 - resto;
             }
-            digito = digito + resto.ToString();
+            digito += resto.ToString();
             return cnpj.EndsWith(digito);
         }
 
@@ -139,8 +138,7 @@ namespace LMCFinanceira
             else
             {
                 return true;
-            }            
-
+            }      
         }
     }
 }

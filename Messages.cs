@@ -8,7 +8,8 @@ namespace LMCFinanceira
 {
 	public static class Messages
 	{
-		public const string MainSelectionMenu = @"******** LMC Financeira ********
+		public const string MainSelectionMenu = @"
+******** LMC Financeira ********
 1 - Novo Contrato
 2 - Exibir Contratos
 3 - Buscar Contrato
@@ -19,10 +20,12 @@ namespace LMCFinanceira
 ******** Novo Contrato ********";
 
 		public const string NewPFContractHeaderMenu = @"
-******** Novo Contrato Pessoa Física ********";
+******** Novo Contrato Pessoa Física ********
+";
 
 		public const string NewPJContractHeaderMenu = @"
-******** Novo Contrato Pessoa Jurídica ********";
+******** Novo Contrato Pessoa Jurídica ********
+";
 
 		public const string displayContractHeaderMenu = @"
 ******** Exibir Contratos ********";
@@ -55,44 +58,50 @@ namespace LMCFinanceira
 ";
 
 		public const string invalidOption = @"
-Opção Inválida! Tente Novamente.
-";
+Opção Inválida! Tente Novamente.";
 
 		public const string invalidNullInput = @"
-Não é possível inserir um valor em branco. Tente Novamente.
-";
+Não é possível inserir um valor em branco. Tente Novamente.";
 
 		public const string invalidInput = @"
-O valor inserido é inválido! Tente Novamente.
-";
+O valor inserido é inválido! Tente Novamente.";
 
 		public const string invalidAge = @"
 A idade do contratante deve ser maior que 18. 
-Cadastre novo contratante.
-";
+Cadastre novo contratante.";
 
 		public const string sucessfullContract = @"
-Contrato criado com sucesso!
-";
+Contrato criado com sucesso!";
+
 		public const string newEntryContratante = "Insira nome do contratante: ";
+
 		public const string newEntryBirthDate = "Insira data de nascimento do contratante (Formato 01/01/2020): ";
+
 		public const string newEntryIE = "Insira número da Inscrição Estadual: ";
+
 		public const string newEntryCPF = "Insira número de CPF: ";
+
 		public const string newEntryCNPJ = "Insira número do CNPJ: ";
+
 		public const string newEntryPrazo = "Insira o prazo de pagamento (meses): ";
+
 		public const string newEntryValor = "Insira o valor do contrato: ";
 
 		public const string emptyPFContractsList = "Não existem contratos de Pessoa Física cadastrados.";
+
 		public const string emptyPJContractsList = "Não existem contratos de Pessoa Jurídica cadastrados.";
 
 		public const string contratanteNotInContractsList = "Não existem contratos cadastrados para esse contratante.";
+
 		public const string CPFNotInContractsList = "Não existem contratos cadastrados para esse CPF.";
+
 		public const string CNPJNotInContractsList = "Não existem contratos cadastrados para esse CNPJ.";
 
 		public const string endThanks = "Obrigado por utilizar a LMC Financeira!";
+
 		public const string endEntryKey = "Digite qualquer tecla para encerrar...";
 
-		public const string returnEntryKey = "Digite qualquer tecla para retornar ao menu inicial     ";
+		public const string returnEntryKey = "Digite qualquer tecla para retornar ao menu inicial ";
 
 
 
