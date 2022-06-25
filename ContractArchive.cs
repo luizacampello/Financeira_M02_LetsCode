@@ -11,7 +11,7 @@ namespace LMCFinanceira
         public List<ContratoPF> PFcontracts { get; private set; } = new List<ContratoPF>();
         public List<ContratoPJ> PJcontracts { get; private set; } = new List<ContratoPJ>();
 
-        public void DisplayPFContractsList()
+        public void DisplayPFContractsArchive()
         {
             if (PFcontracts.Count > 0)
             {
@@ -27,7 +27,7 @@ namespace LMCFinanceira
             }
         }
 
-        public void DisplayPJContractsList()
+        public void DisplayPJContractsArchive()
         {
             if (PJcontracts.Count > 0)
             {
@@ -43,12 +43,12 @@ namespace LMCFinanceira
             }
         }
 
-        public void NameSearchContrato(List <ContratoPJ> contractsList, string contratante)
+        public void ShowContractsByName(List <ContratoPJ> contractsList, string contratante)
         {
             bool found = false;
             foreach (ContratoPJ contract in contractsList)
             {
-                if (contract.contratante == contratante)
+                if (contract.contractor == contratante)
                 {
                     contract.ExibirInfo();
                     found = true;
@@ -61,12 +61,12 @@ namespace LMCFinanceira
             }
         }
 
-        public void NameSearchContrato(List<ContratoPF> contractsList, string contratante)
+        public void ShowContractsByName(List<ContratoPF> contractsList, string contratante)
         {
             bool found = false;
             foreach (ContratoPF contract in contractsList)
             {
-                if (contract.contratante == contratante)
+                if (contract.contractor == contratante)
                 {
                     contract.ExibirInfo();
                     found = true;
@@ -79,7 +79,7 @@ namespace LMCFinanceira
             }
         }
 
-        public void CPFSearchContrato(string CPF)
+        public void ShowContractsByCPF(string CPF)
         {
             bool found = false;
             foreach (ContratoPF contract in PFcontracts)
@@ -97,7 +97,7 @@ namespace LMCFinanceira
             }
         }
 
-        public void CNPJSearchContrato(string CNPJ)
+        public void ShowContractsByCNPJ(string CNPJ)
         {
             bool found = false;
             foreach (ContratoPJ contract in PJcontracts)
@@ -115,12 +115,12 @@ namespace LMCFinanceira
             }
         }
 
-        public void AddToContractList(ContratoPF newContract)
+        public void ArchiveContract(ContratoPF newContract)
         {
             PFcontracts.Add(newContract);
         }
 
-        public void AddToContractList(ContratoPJ newContract)
+        public void ArchiveContract(ContratoPJ newContract)
         {
             PJcontracts.Add(newContract);
         }

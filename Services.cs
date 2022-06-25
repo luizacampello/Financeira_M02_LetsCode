@@ -84,13 +84,13 @@ namespace LMCFinanceira
             switch (UserSelection)
             {
                 case "1":
-                    string contratante = NewContratante();
-                    contractsArchive.NameSearchContrato(contractsArchive.PFcontracts, contratante);
+                    string contractor = NewContractor();
+                    contractsArchive.ShowContractsByName(contractsArchive.PFcontracts, contractor);
                     ReturnProgram(contractsArchive);
                     return;
                 case "2":
                     string cpf = NewCPF();
-                    contractsArchive.CPFSearchContrato(cpf);
+                    contractsArchive.ShowContractsByCPF(cpf);
                     ReturnProgram(contractsArchive);
                     return;
                 case "3":
@@ -111,13 +111,13 @@ namespace LMCFinanceira
             switch (UserSelection)
             {
                 case "1":
-                    string contratante = NewContratante();
-                    contractsArchive.NameSearchContrato(contractsArchive.PJcontracts, contratante);
+                    string contratante = NewContractor();
+                    contractsArchive.ShowContractsByName(contractsArchive.PJcontracts, contratante);
                     ReturnProgram(contractsArchive);
                     return;
                 case "2":
                     string cnpj = NewCNPJ();
-                    contractsArchive.CNPJSearchContrato(cnpj);
+                    contractsArchive.ShowContractsByCNPJ(cnpj);
                     ReturnProgram(contractsArchive);
                     return;
                 case "3":
@@ -140,11 +140,11 @@ namespace LMCFinanceira
             switch (UserSelection)
             {
                 case "1":
-                    contractsArchive.DisplayPFContractsList();
+                    contractsArchive.DisplayPFContractsArchive();
                     ReturnProgram(contractsArchive);
                     return;
                 case "2":
-                    contractsArchive.DisplayPJContractsList();
+                    contractsArchive.DisplayPJContractsArchive();
                     ReturnProgram(contractsArchive);
                     return;
                 case "3":
@@ -189,13 +189,13 @@ namespace LMCFinanceira
         {
             Console.Clear();
             Console.WriteLine(Messages.NewPFContractHeaderMenu);
-            string contratante = "";
+            string contractor = "";
             DateTime birthDate = new ();
             int age = 0;
 
             while (age < 18)
             {
-                contratante = NewContratante();
+                contractor = NewContractor();
                 birthDate = NewBirthDate();
                 age = CalculateAge(birthDate);
 
@@ -206,40 +206,40 @@ namespace LMCFinanceira
             }
 
             string CPF = NewCPF();
-            decimal valor = NewValor();
-            int prazo = NewPrazo();
+            decimal value = NewContractValue();
+            int deadline = NewDeadline();
             
-            ContratoPF novoContratoPF = new ContratoPF(contratante, valor, prazo, CPF, birthDate, age);
-            contractsArchive.AddToContractList(novoContratoPF);
+            ContratoPF newContractPF = new ContratoPF(contractor, value, deadline, CPF, birthDate, age);
+            contractsArchive.ArchiveContract(newContractPF);
             Console.WriteLine(Messages.sucessfullContract);
-            novoContratoPF.ExibirInfo();
+            newContractPF.ExibirInfo();
         }
 
         static void NewPJContract(ContractArchive contractsArchive)
         {
             Console.Clear();
             Console.WriteLine(Messages.NewPJContractHeaderMenu);
-            string contratante = NewContratante();
+            string contractor = NewContractor();
             string CNPJ = NewCNPJ();
             string inscricaoEstadual = NewInscricaoEstadual();
-            decimal valor = NewValor();
-            int prazo = NewPrazo();
+            decimal value = NewContractValue();
+            int deadline = NewDeadline();
 
-            ContratoPJ novoContratoPJ = new ContratoPJ(contratante, valor, prazo, CNPJ, inscricaoEstadual);
-            contractsArchive.AddToContractList(novoContratoPJ);
+            ContratoPJ newContractPJ = new ContratoPJ(contractor, value, deadline, CNPJ, inscricaoEstadual);
+            contractsArchive.ArchiveContract(newContractPJ);
             Console.WriteLine(Messages.sucessfullContract);
-            novoContratoPJ.ExibirInfo();
+            newContractPJ.ExibirInfo();
         }
 
-        static string NewContratante()
+        static string NewContractor()
         {
             Console.Write(Messages.newEntryContratante);
             string userInput = UserInput();
 
             return userInput;
-        }        
+        }
 
-        static public decimal NewValor()
+        public static decimal NewContractValue()
         {
             Console.Write(Messages.newEntryValor);
             string userInput = UserInput();
@@ -256,10 +256,10 @@ namespace LMCFinanceira
             }
 
             Console.WriteLine(Messages.invalidInput);
-            return NewValor();
+            return NewContractValue();
         }
 
-        static public int NewPrazo()
+        public static int NewDeadline()
         {
             Console.Write(Messages.newEntryPrazo);
             bool isValidUserInput = int.TryParse(UserInput(), out int userInput);
@@ -271,10 +271,10 @@ namespace LMCFinanceira
                 }
             }
             Console.WriteLine(Messages.invalidInput);
-            return NewPrazo();
+            return NewDeadline();
         }
 
-        static public string NewCPF()
+        public static string NewCPF()
         {
             Console.Write(Messages.newEntryCPF);
             string userInput = UserInput();
@@ -288,7 +288,7 @@ namespace LMCFinanceira
             return NewCPF();
         }
 
-        static public string NewCNPJ()
+        public static string NewCNPJ()
         {
             Console.Write(Messages.newEntryCNPJ);
             string userInput = UserInput();
@@ -302,7 +302,7 @@ namespace LMCFinanceira
             return NewCNPJ();
         }
 
-        static public DateTime NewBirthDate()
+        public static DateTime NewBirthDate()
         {
             Console.Write(Messages.newEntryBirthDate);
             string userInput = UserInput();
@@ -316,7 +316,7 @@ namespace LMCFinanceira
             return NewBirthDate();
         }
 
-        static public string NewInscricaoEstadual()
+        public static string NewInscricaoEstadual()
         {
             Console.Write(Messages.newEntryIE);
             string userInput = UserInput();
@@ -340,7 +340,7 @@ namespace LMCFinanceira
             return age;
         }
 
-        static string UserInput()
+        public static string UserInput()
         {
             string userInput = Console.ReadLine();
             if (!String.IsNullOrWhiteSpace(userInput))

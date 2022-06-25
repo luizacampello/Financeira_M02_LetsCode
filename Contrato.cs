@@ -8,21 +8,21 @@ namespace LMCFinanceira
 {
     public abstract class Contrato
     {
-        protected Guid idContrato { get; set; }
-        public string contratante { get; protected set; }
-        protected decimal valor { get; set; }
-        protected int prazo { get; set; }
+        protected Guid contractId { get; set; }
+        public string contractor { get; protected set; }
+        protected decimal value { get; set; }
+        protected int deadline { get; set; }
 
         protected virtual decimal CalcularPrestacao()
         {
-            return valor / prazo;
+            return value / deadline;
         }
 
         public virtual void ExibirInfo()
         {
             
-            Console.WriteLine($"Valor do contrato: {valor}");
-            Console.WriteLine($"Prazo (meses): {prazo}");
+            Console.WriteLine($"Valor do contrato: {value}");
+            Console.WriteLine($"Prazo (meses): {deadline}");
             Console.WriteLine($"Valor da prestação: {CalcularPrestacao()}");
             Console.WriteLine();
 

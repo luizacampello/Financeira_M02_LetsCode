@@ -9,31 +9,31 @@ namespace LMCFinanceira
     public class ContratoPF : Contrato
     {
         public string CPF { get; private set; }
-        private DateTime DataNascimento { get; set; }
-        private int idade { get; set; }
+        private DateTime birthDate { get; set; }
+        private int age { get; set; }
 
-        public ContratoPF(string contratante, decimal valor, int prazo, string CPF, DateTime DataNascimento, int idade)
+        public ContratoPF(string contratante, decimal value, int deadline, string CPF, DateTime DataNascimento, int age)
         {
-            idContrato = Guid.NewGuid();
-            base.contratante = contratante;
-            base.valor = valor;
-            base.prazo = prazo;
+            contractId = Guid.NewGuid();
+            base.contractor = contratante;
+            base.value = value;
+            base.deadline = deadline;
             this.CPF = CPF;
-            this.DataNascimento = DataNascimento;
-            this.idade = idade;
+            this.birthDate = DataNascimento;
+            this.age = age;
         }
 
         private int CalcularAdicional()
         {
-            if (idade <= 30)
+            if (age <= 30)
             {
                 return 1;
             }
-            else if (idade <= 40)
+            else if (age <= 40)
             {
                 return 2;
             }
-            else if (idade <= 50)
+            else if (age <= 50)
             {
                 return 3;
             }
@@ -53,10 +53,10 @@ namespace LMCFinanceira
 
         public override void ExibirInfo()
         {
-            Console.WriteLine($"ID do Contrato: {idContrato}");
-            Console.WriteLine($"Contratante: {contratante}");
+            Console.WriteLine($"ID do Contrato: {contractId}");
+            Console.WriteLine($"Contratante: {contractor}");
             Console.WriteLine($"CPF: {CPF}");
-            Console.WriteLine($"Data de Nascimento: {DataNascimento.ToString("dd/MM/yyyy")} ({idade} anos)");
+            Console.WriteLine($"Data de Nascimento: {birthDate.ToString("dd/MM/yyyy")} ({age} anos)");
             base.ExibirInfo();
             
         }

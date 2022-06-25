@@ -13,10 +13,10 @@ namespace LMCFinanceira
 
         public ContratoPJ(string contratante, decimal valor, int prazo, string CNPJ, string inscricaoEstadual)
         {
-            idContrato = Guid.NewGuid();
-            base.contratante = contratante;
-            base.valor = valor;
-            base.prazo = prazo;
+            contractId = Guid.NewGuid();
+            base.contractor = contratante;
+            base.value = valor;
+            base.deadline = prazo;
             this.CNPJ = CNPJ;
             this.inscricaoEstadual = inscricaoEstadual;
         }
@@ -29,8 +29,8 @@ namespace LMCFinanceira
 
         public override void ExibirInfo()
         {
-            Console.WriteLine($"ID do Contrato: {idContrato}");
-            Console.WriteLine($"Contratante: {contratante}");
+            Console.WriteLine($"ID do Contrato: {contractId}");
+            Console.WriteLine($"Contratante: {contractor}");
             Console.WriteLine($"CNPJ: {CNPJ}");
             Console.WriteLine($"Inscrição Estadual: {inscricaoEstadual}");
             base.ExibirInfo();
