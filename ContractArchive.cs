@@ -43,12 +43,12 @@ namespace LMCFinanceira
             }
         }
 
-        public void ShowContractsByName(List <ContratoPJ> contractsList, string contratante)
+        public void ShowContractsByName(List <ContratoPJ> contractsList, string contractor)
         {
             bool found = false;
             foreach (ContratoPJ contract in contractsList)
             {
-                if (contract.contractor == contratante)
+                if (contract.contractor == contractor)
                 {
                     contract.ExibirInfo();
                     found = true;
@@ -61,12 +61,12 @@ namespace LMCFinanceira
             }
         }
 
-        public void ShowContractsByName(List<ContratoPF> contractsList, string contratante)
+        public void ShowContractsByName(List<ContratoPF> contractsList, string contractor)
         {
             bool found = false;
             foreach (ContratoPF contract in contractsList)
             {
-                if (contract.contractor == contratante)
+                if (contract.contractor == contractor)
                 {
                     contract.ExibirInfo();
                     found = true;
